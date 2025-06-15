@@ -76,8 +76,8 @@ fn create_rate_limiter() -> anyhow::Result<ArcRateLimiter> {
 }
 
 async fn create_provider() -> anyhow::Result<impl Provider> {
-    let ws_url = env::var("ETH_WS_URL")
-        .expect("ETH_WS_URL env-var not set (e.g. wss://mainnet.infura.io/ws/v3/<KEY>)");
+    let ws_url = env::var("WS_RPC_URL")
+        .expect("WS_RPC_URL env-var not set (e.g. wss://mainnet.infura.io/ws/v3/<KEY>)");
 
     let ws_connect = WsConnect::new(ws_url);
     let provider = ProviderBuilder::new().connect_ws(ws_connect).await?; // <-- only line that changed
